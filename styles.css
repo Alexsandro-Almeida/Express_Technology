@@ -1,0 +1,996 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+/* Header geral */
+#main-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: #3c3c3c;
+    z-index: 1000;
+    opacity: 90%;
+    transition: transform 0.3s ease-in-out;
+     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#main-header.hidden {
+    transform: translateY(-100%);
+}
+
+
+/* Logo */
+.logo img {
+    height: 50px;
+    border-radius: 50px;
+    transition: opacity 0.3s ease;
+}
+
+.menu img {
+    height: 40px;
+}
+
+/* Menu */
+nav .menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.menu li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.menu li:hover {
+    transform: scale(1.1);
+}
+
+.menu li .menu-text a {
+    text-decoration: none;
+    font-size: 1.0rem;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #f5f5f5;
+    width: auto;
+    transition: width 0.5s ease, color 0.5s ease;
+}
+
+.menu li:hover .menu-text a {
+    width: auto;
+    color: #dcdcdc;
+}
+
+.menu li img {
+    font-size: 1.2rem;
+}
+
+/* Botão hambúrguer */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 0.3rem;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 3px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    nav .menu {
+        display: none;
+    }
+
+    #main-header {
+        background: none;
+    }
+
+    .hamburger {
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        z-index: 1100;
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    .hamburger.active span {
+        background: #fff; /* Ícone muda para branco quando ativo */
+    }
+
+    /* Nav ativo */
+    nav.active {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #333;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    nav.active .menu {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    nav.active .menu li .menu-text {
+        color: #fff;
+        width: auto;
+    }
+
+    nav.active .logo {
+        display: none; /* Esconde o logo quando o menu é expandido */
+    }
+
+
+
+}
+/* Estilo da seção home */
+#home {
+    position: relative;
+    height: 100vh; /* Ocupa a altura total da tela */
+    overflow: hidden;
+    background: black;
+}
+
+/* Fundo com imagens */
+.background-images {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.background-images img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0; /* Invisível por padrão */
+    transition: opacity 2s ease; /* Transição suave entre as imagens */
+}
+
+/* A classe ativa torna a imagem visível */
+.background-images img.active {
+    opacity: 1; /* Visível */
+}
+
+/* Caixa semitransparente atrás da mensagem */
+.welcome-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+    z-index: 10;
+    animation: fade-in 2s ease-out;
+    padding: 20px; /* Espaçamento interno da caixa */
+    background-color: rgba(0, 0, 0, 0.7); /* Cor preta com transparência de 50% */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra sutil para destacar */
+    width: 80%; /* Largura ajustável */
+    max-width: 700px; /* Largura máxima para evitar que a caixa fique muito grande */
+}
+
+/* Ajuste para os textos */
+.welcome-message h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.welcome-message p {
+    font-size: 1.5rem;
+    font-style: italic;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Ajuste para telas menores (Responsivo) */
+@media (max-width: 768px) {
+    .welcome-message {
+        width: 90%; /* Aumenta a largura da caixa em telas menores */
+        padding: 15px; /* Menos padding em telas menores */
+    }
+
+    .welcome-message h1 {
+        font-size: 2.5rem; /* Ajuste o tamanho da fonte para dispositivos menores */
+    }
+
+    .welcome-message p {
+        font-size: 1.2rem; /* Ajuste o tamanho da fonte do parágrafo */
+    }
+}
+
+/* Ajuste para telas muito pequenas (como celulares) */
+@media (max-width: 480px) {
+    .welcome-message {
+        width: 95%; /* Aumenta ainda mais a largura para telas pequenas */
+        padding: 10px; /* Diminui o padding em telas muito pequenas */
+    }
+
+    .welcome-message h1 {
+        font-size: 2rem; /* Reduz o tamanho da fonte para dispositivos muito pequenos */
+    }
+
+    .welcome-message p {
+        font-size: 1rem; /* Reduz o tamanho do parágrafo */
+    }
+}
+
+
+/* Estilo para o container das partículas */
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Certifique-se de que as partículas fiquem atrás do conteúdo */
+}
+
+/* Mensagem de boas-vindas (certifique-se de que a mensagem fique acima das partículas) */
+.welcome-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+    z-index: 10; /* Garantir que o texto fique acima das partículas */
+    animation: fade-in 2s ease-out;
+}
+
+/* Estilo Global para a Seção About */
+#about {
+    padding: 60px 10%;
+    background-color: #000; /* Fundo Preto */
+    color: #fff; /* Texto Branco */
+    font-family: 'Arial', sans-serif;
+}
+
+#about h2, #about h3 {
+    color: #fff;
+    text-align: center;
+}
+
+
+
+/* Estilo da seção Tecnologias */
+.technologies {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #1d1d1d;
+    color: #fff;
+    position: relative;
+}
+
+.technologies h3 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+/* Layout dos ícones das tecnologias */
+.tech-icons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-items: center;
+    align-items: center;
+    position: relative;
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+/* Barra de progresso */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #333;
+    border-radius: 5px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: #61dafb;
+    transition: width 0.3s ease-out;
+}
+
+/* Efeito de hover nos ícones */
+.tech-item:hover {
+    transform: translateY(-10px) rotate(10deg);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.tech-item:hover img {
+    transform: scale(1.2);
+    filter: brightness(1.2);
+}
+
+/* Efeito de brilho neon ao passar o mouse */
+.tech-item:hover span {
+    color: #61dafb;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7), 0 0 20px #61dafb, 0 0 30px #61dafb;
+}
+
+/* Ícones */
+.tech-item img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .tech-icons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .tech-icons {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+/* Estilo para a seção Serviços */
+.services {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #1d1d1d;
+    color: #fff;
+}
+
+.services h3 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+/* Layout dos cards de serviços */
+.service-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    justify-items: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.service-card {
+    background-color: #2d2d2d;
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative;
+}
+
+/* Efeitos de hover nos cards */
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    border: 2px solid #61dafb; /* A cor da borda pode ser personalizada */
+}
+
+/* Ícones dentro dos cards */
+.service-card img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover img {
+    transform: scale(1.1); /* Efeito de aumento no ícone ao passar o mouse */
+}
+
+/* Títulos dos serviços */
+.service-card h4 {
+    font-size: 1.6rem;
+    color: #61dafb;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+/* Descrição do serviço */
+.service-card p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #ddd;
+}
+
+/* Botões de Chamada para Ação */
+.cta-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #61dafb;
+    color: #1d1d1d;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.cta-btn:hover {
+    background-color: #fff;
+    color: #1d1d1d;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .service-cards {
+        grid-template-columns: repeat(1, 2fr); /* 2 cards em telas menores */
+    }
+}
+
+@media (max-width: 480px) {
+    .service-cards {
+        grid-template-columns: 1fr; /* 1 card por linha em telas muito pequenas */
+    }
+}
+
+/* Estilização do Card do Dono */
+.owner-card {
+    display: flex;
+    align-items: center;
+    background-color: #1d1d1d;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    margin-top: 50px;
+    position: relative;
+}
+
+.owner-card:hover {
+    transform: translateY(-10px);
+}
+
+.owner-photo img {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.owner-info h4 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.owner-info p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.info-btn {
+    background-color: #61dafb;
+    color: #1d1d1d;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.info-btn:hover {
+    background-color: #fff;
+    color: #1d1d1d;
+}
+
+/* Estilização do Popup */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none; /* Inicialmente escondido */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.popup-content {
+    background-color: #fff;
+    color: #1d1d1d;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    z-index: 1000;
+    max-width: 600px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(0.8);
+    animation: popup-in 0.4s forwards;
+}
+
+@media (max-width: 768px) {
+    .popup-overlay {
+        z-index: 1000;
+    }
+}
+
+@keyframes popup-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.close-popup {
+    background-color: #ff6347;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.close-popup:hover {
+    background-color: #e53e3e;
+}
+
+
+/* Seção de Projetos - Preto e Branco */
+.projects {
+    padding: 50px 20px;
+    background-color: #000; /* Fundo preto */
+    color: #fff; /* Texto branco */
+}
+
+.projects h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #fff; /* Título branco */
+}
+
+.project-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.project-card {
+    background-color: #333; /* Fundo dos cards em cinza escuro */
+    border-radius: 10px;
+    overflow: hidden;
+    width: calc(33.33% - 20px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    color: #fff; /* Texto dentro do card em branco */
+    position: relative;
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card .project-info {
+    padding: 20px;
+}
+
+.project-card h4 {
+    font-size: 1.5rem;
+    color: #fff; /* Título branco */
+    margin-bottom: 10px;
+}
+
+.project-card p {
+    font-size: 1rem;
+    color: #bbb; /* Texto cinza claro */
+    margin-bottom: 15px;
+}
+
+.project-btn {
+    background-color: #fff; /* Botão branco */
+    color: #000; /* Texto preto */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.project-btn:hover {
+    background-color: #000; /* Fundo preto no hover */
+    color: #fff; /* Texto branco no hover */
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+}
+
+.project-card:hover img {
+    transform: scale(1.05); /* Efeito de zoom suave na imagem */
+}
+
+/* Responsividade - Para telas menores */
+@media (max-width: 768px) {
+    .project-card {
+        width: 100%; /* Cards empilhados no modo mobile */
+    }
+}
+
+/* Animações ao rolar a página */
+.project-card {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.project-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Estilos para o rodapé */
+#footer {
+    background-color: #000; /* Fundo preto */
+    color: #fff; /* Texto branco */
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* Alinha o conteúdo do rodapé */
+#footer {
+    background: linear-gradient(135deg, #000, #333);
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+
+.footer-social img {
+    width: 35px;
+    height: 35px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-social a:hover img {
+    transform: scale(1.2); /* Aumenta o tamanho ao passar o mouse */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* Sombra suave */
+}
+
+.footer-logo .logo {
+    transition: transform 0.3s ease;
+}
+
+.footer-logo a:hover .logo {
+    transform: rotate(360deg); /* Efeito de rotação da logo */
+}
+
+
+.footer-social a {
+    display: inline-block;
+    animation: pulse-animation 2s infinite; /* Animação contínua */
+}
+
+@keyframes pulse-animation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1); /* Aumenta o tamanho dos ícones */
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+.footer-bottom p {
+    font-size: 0.9rem;
+    color: #ccc;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+    animation-delay: 1s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#footer::before {
+    content: "";
+    display: block;
+    height: 2px;
+    background: #fff;
+    width: 60%;
+    margin: 20px auto;
+    opacity: 0.2;
+}
+
+.footer-bottom p {
+    opacity: 0;
+    animation: fade-in-text 2s forwards;
+    font-size: 1rem;
+}
+
+@keyframes fade-in-text {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.footer-social a:hover img {
+    filter: brightness(1.5);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Efeito glow */
+}
+#footer {
+    animation: gradientAnimation 10s infinite alternate;
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+
+.footer-social a {
+    display: inline-block;
+    border-radius: 50%;
+    background: transparent;
+    padding: 10px;
+    transition: background 0.3s, transform 0.3s ease;
+}
+
+.footer-social a:hover {
+    background: rgba(255, 255, 255, 0.1); /* Fundo sutil ao passar o mouse */
+    transform: scale(1.1); /* Aumenta o ícone */
+}
+
+
+.footer-social a {
+    opacity: 0;
+    transform: translateY(20px); /* Começa da parte inferior */
+    animation: slide-up 1s forwards;
+}
+
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Container do Robô */
+#robot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+}
+
+#robot {
+    width: 100px;
+    cursor: pointer;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Botão de Fechar */
+#close-robot {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Botão para Mostrar o Robô */
+#show-robot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+/* Balão de Diálogo */
+#robot-dialog {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    position: absolute;
+    bottom: 80px;
+    right: 50px;
+    max-width: 250px;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* Animação do Robô */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+/* Chat Popup Container */
+#chat-popup {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    background: #fff;
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+/* Chat Header */
+#chat-header {
+    background: #007bff;
+    color: #fff;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+/* Chat Messages */
+#chat-messages {
+    padding: 10px;
+    height: 200px;
+    overflow-y: auto;
+    background: #f9f9f9;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.message {
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.message.bot {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.message.user {
+    color: #333;
+    text-align: right;
+}
+
+/* Chat Input */
+#chat-input-container {
+    display: flex;
+    padding: 10px;
+    background: #fff;
+}
+
+#chat-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#send-message {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin-left: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#send-message:hover {
+    background: #0056b3;
+}
